@@ -84,9 +84,9 @@ void AXP192Component::begin(bool disableLDO2, bool disableLDO3, bool disableRTC,
     }
     case AXP192_M5TOUGH:
     {
-        // Set DCDC3 (TFT_LED & TFT) 3.0V
-        Write1Byte(0x27, 0xcc);
-        // Set LDO2 & LDO3(TFT_LED & TFT) 3.0V
+        // Set DCDC1 (ESP32-3.3V SK6812,INA3221,CH902F) 3.0V
+        Write1Byte(0x26, 0xcc);
+        // Set LDO2 & LDO3(LCD) 3.0V
         Write1Byte(0x28, 0xcc);
         break;
     }
