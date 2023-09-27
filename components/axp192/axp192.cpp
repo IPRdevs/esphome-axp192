@@ -112,14 +112,23 @@ void AXP192Component::begin(bool disableLDO2, bool disableLDO3, bool disableRTC,
     // 128ms power on, 4s power off
     Write1Byte(0x36, 0x0C);
 
-    if(!disableRTC)
-    {
-        // Set RTC voltage to 3.3V
-        Write1Byte(0x91, 0xF0);
+    // if(!disableRTC)
+    // {
+    //     // Set RTC voltage to 3.3V
+    //     Write1Byte(0x91, 0xF0);
 
-        // Set GPIO0 to LDO
-        Write1Byte(0x90, 0x02);
-    }
+    //     // Set GPIO0 to LDO
+    //     Write1Byte(0x90, 0x02);
+    // }
+
+    //CUSTOM
+    // Set GPIO0 to LDO
+    Write1Byte(0x90, 0x02);
+    //CUSTOM
+    // Set RTC voltage to 3.3V
+    Write1Byte(0x91, 0xF0);
+    //END CUSTOM
+
 
     // Disable vbus hold limit
     Write1Byte(0x30, 0x80);
