@@ -123,10 +123,12 @@ void AXP192Component::begin(bool disableLDO2, bool disableLDO3, bool disableRTC,
 
     //CUSTOM
     // Set GPIO0 to LDO
-    Write1Byte(0x90, 0x02);
+    //Write1Byte(0x90, 0x02);
     //CUSTOM
     // Set RTC voltage to 3.3V
-    Write1Byte(0x91, 0xF0);
+    //Write1Byte(0x91, 0xF0);
+    //Set GPIO0 to OPEN DRAIN
+    Write1Byte(0x90, 0x00);
     //END CUSTOM
 
 
