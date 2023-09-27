@@ -92,14 +92,14 @@ void AXP192Component::begin(bool disableLDO2, bool disableLDO3, bool disableRTC,
     }
   }
 
-    // Set ADC sample rate to 200hz
-    Write1Byte(0x84, 0b11110010);
+    // // Set ADC sample rate to 200hz
+    // Write1Byte(0x84, 0b11110010);
 
-    // Set ADC to All Enable
-    Write1Byte(0x82, 0xff);
+    // // Set ADC to All Enable
+    // Write1Byte(0x82, 0xff);
 
-    // Bat charge voltage to 4.2, Current 100MA
-    Write1Byte(0x33, 0xc0);
+    // // Bat charge voltage to 4.2, Current 100MA
+    // Write1Byte(0x33, 0xc0);
 
     // Depending on configuration enable LDO2, LDO3, DCDC1, DCDC3.
     uint8_t buf = (Read8bit(0x12) & 0xef) | 0x4D;
@@ -137,7 +137,7 @@ void AXP192Component::begin(bool disableLDO2, bool disableLDO3, bool disableRTC,
     Write1Byte(0x39, 0xfc);
 
     // Enable RTC BAT charge
-    Write1Byte(0x35, 0xa2 & (disableRTC ? 0x7F : 0xFF));
+    Write1Byte(0x35, 0x00);
 
     // Enable bat detection
     Write1Byte(0x32, 0x46);
