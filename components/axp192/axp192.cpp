@@ -48,7 +48,7 @@ void AXP192Component::dump_config() {
   LOG_SENSOR("  ", "Battery Level", this->batterylevel_sensor_);
 }
 
-float AXP192Component::get_setup_priority() const { return setup_priority::BUS; }
+float AXP192Component::get_setup_priority() const { return setup_priority::WIFI; }
 
 void AXP192Component::update() {
 
