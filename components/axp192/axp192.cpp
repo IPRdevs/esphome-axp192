@@ -129,6 +129,8 @@ void AXP192Component::begin(bool disableLDO2, bool disableLDO3, bool disableRTC,
     //Write1Byte(0x91, 0xF0);
     //Set GPIO0 to OPEN DRAIN
     Write1Byte(0x90, 0x00);
+    //Set GPIO0-2 to HIGH
+    Write1Byte(0x94, 0x07);
     //END CUSTOM
 
 
