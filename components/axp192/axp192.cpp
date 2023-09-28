@@ -21,19 +21,23 @@ void AXP192Component::setup()
         begin(false, true, false, false, false);
         break;
     }
+    // case AXP192_M5TOUGH:
+    // {
+    //     begin(false, false, false, false, false);
+
+    //     // If we're waking from a cold boot
+    //     if (GetStartupReason() == "ESP_RST_POWERON")
+    //     {
+    //         ESP_LOGD(TAG, "First power on, restarting ESP...");
+
+    //         // Reboot the ESP with the axp initialised
+    //         ESP.restart();
+    //     }
+    //     break;
+    // }
     case AXP192_M5TOUGH:
     {
         begin(false, false, false, false, false);
-
-        // If we're waking from a cold boot
-        if (GetStartupReason() == "ESP_RST_POWERON")
-        {
-            ESP_LOGD(TAG, "First power on, restarting ESP...");
-
-            // Reboot the ESP with the axp initialised
-            ESP.restart();
-        }
-        break;
     }
   }
 }
@@ -44,7 +48,7 @@ void AXP192Component::dump_config() {
   LOG_SENSOR("  ", "Battery Level", this->batterylevel_sensor_);
 }
 
-float AXP192Component::get_setup_priority() const { return setup_priority::DATA; }
+float AXP192Component::get_setup_priority() const { return setup_priority::BUS; }
 
 void AXP192Component::update() {
 
@@ -127,8 +131,10 @@ void AXP192Component::begin(bool disableLDO2, bool disableLDO3, bool disableRTC,
     //CUSTOM
     // Set RTC voltage to 3.3V
     //Write1Byte(0x91, 0xF0);
-    //Set GPIO0 to OPEN DRAIN
+    //Set GPIO0-2 to OPEN DRAIN
     Write1Byte(0x90, 0x00);
+    Write1Byte(0x92, 0x00);
+    Write1Byte(0x93, 0x00);
     //Set GPIO0-2 to HIGH
     Write1Byte(0x94, 0x07);
     //END CUSTOM
